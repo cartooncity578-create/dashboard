@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spark Cloud Hosting</title>
+<title>Axion Cloud Hosting</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -53,6 +53,8 @@
     nav ul{ list-style:none; display:flex; gap:25px; }
     nav a{ text-decoration:none; color:#cbd5ff; font-weight:600; cursor: pointer; transition: 0.3s; }
     nav a:hover{ color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
+    /* Added style for payment link */
+    .pay-nav { color: #ffd700 !important; }
 
     /* ================= PAGES ================= */
     .page-view { display: none; opacity: 0; transition: opacity 0.5s ease; padding-bottom: 50px; }
@@ -126,7 +128,7 @@
 
     <div id="dashboard">
         <div class="container">
-            <h1>SPARK CLOUD</h1>
+            <h1>AXION CLOUD</h1>
             <p style="color:#9aa4c7; margin-top:20px; font-size:18px;">Next-Gen Minecraft Server Hosting</p>
             <button class="btn" onclick="showPage('main-page')">🚀 START EXPLORING</button>
         </div>
@@ -134,8 +136,9 @@
 
     <div id="main-page" class="page-view">
         <nav>
-            <div class="logo">SPARK CLOUD</div>
+            <div class="logo">AXION CLOUD</div>
             <ul>
+                <li><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="pay-nav">PAYMENT</a></li>
                 <li><a href="https://discord.gg/pDKhejNFDj" target="_blank">Discord</a></li>
                 <li><a onclick="showPage('dashboard')">Home</a></li>
                 <li><a href="https://panel.legendvortexhost.dpdns.org/" target="_blank">Panel</a></li>
@@ -161,8 +164,9 @@
 
     <div id="normal-plans" class="page-view">
         <nav>
-            <div class="logo">SPARK CLOUD</div>
+            <div class="logo">AXION CLOUD</div>
             <ul>
+                <li><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="pay-nav">PAYMENT</a></li>
                 <li><a href="https://discord.gg/pDKhejNFDj" target="_blank">Discord</a></li>
                 <li><a onclick="showPage('dashboard')">Home</a></li>
                 <li><a href="https://panel.legendvortexhost.dpdns.org/" target="_blank">Panel</a></li>
@@ -177,21 +181,21 @@
                     <div class="price-tag">₹149/mo</div>
                     <p class="specs">CPU: 150%<br>RAM: 4GB<br>Storage: 25GB SSD<br>Backups: 1 Slot<br>
                     <strong>Recommended: Friends SMP (10-15 Players)</strong></p>
-                    <a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn">BUY NOW</a>
+                    <a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn">BUY NOW</a>
                 </div>
                 <div class="plan-box">
                     <h3>6GB Plan</h3>
                     <div class="price-tag">₹229/mo</div>
                     <p class="specs">CPU: 250%<br>RAM: 6GB<br>Storage: 40GB SSD<br>Backups: 1 Slot<br>
                     <strong>Recommended: Small Plugin Servers</strong></p>
-                    <a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn">BUY NOW</a>
+                    <a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn">BUY NOW</a>
                 </div>
                 <div class="plan-box">
                     <h3>8GB Plan</h3>
                     <div class="price-tag">₹329/mo</div>
                     <p class="specs">CPU: 300%<br>RAM: 8GB<br>Storage: 60GB SSD<br>Backups: 1 Slot<br>
                     <strong>Recommended: Medium SMP</strong></p>
-                    <a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn">BUY NOW</a>
+                    <a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn">BUY NOW</a>
                 </div>
             </div>
         </div>
@@ -199,8 +203,9 @@
 
     <div id="premium-plans" class="page-view">
         <nav>
-            <div class="logo">SPARK CLOUD</div>
+            <div class="logo">AXION CLOUD</div>
             <ul>
+                <li><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="pay-nav">PAYMENT</a></li>
                 <li><a href="https://discord.gg/pDKhejNFDj" target="_blank">Discord</a></li>
                 <li><a onclick="showPage('dashboard')">Home</a></li>
                 <li><a href="https://panel.legendvortexhost.dpdns.org/" target="_blank">Panel</a></li>
@@ -210,10 +215,10 @@
             <button class="back-btn" onclick="showPage('main-page')" style="border-color:#ffd700; color:#ffd700;">← Back</button>
             <h1 style="clear:both; color:#ffd700;">Premium Tier Plans</h1>
             <div class="plans-grid">
-                <div class="plan-box premium-box"><h3>6GB</h3><div class="price-tag">₹349/mo</div><p class="specs">CPU: AMD EPYC — 300% Priority<br>RAM: 6GB<br>Storage: 50GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Active SMP / Light Plugins</strong></p><a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
-                <div class="plan-box premium-box"><h3>8GB</h3><div class="price-tag">₹499/mo</div><p class="specs">CPU: AMD EPYC — 450% Priority<br>RAM: 8GB<br>Storage: 70GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Medium Community</strong></p><a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
-                <div class="plan-box premium-box"><h3>12GB</h3><div class="price-tag">₹699/mo</div><p class="specs">CPU: AMD EPYC — 600% Priority<br>RAM: 12GB<br>Storage: 100GB SSD<br>Backups: 3 Slots<br><strong>Recommended: Heavy Plugin / Large SMP</strong></p><a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
-                <div class="plan-box premium-box"><h3>16GB</h3><div class="price-tag">₹999/mo</div><p class="specs">CPU: AMD EPYC — 800% Priority<br>RAM: 16GB<br>Storage: 140GB NVMe<br>Backups: 3 Slots<br><strong>Recommended: High Load / Large Communities</strong></p><a href="https://discord.gg/pDKhejNFDj" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>6GB</h3><div class="price-tag">₹349/mo</div><p class="specs">CPU: AMD EPYC — 300% Priority<br>RAM: 6GB<br>Storage: 50GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Active SMP / Light Plugins</strong></p><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>8GB</h3><div class="price-tag">₹499/mo</div><p class="specs">CPU: AMD EPYC — 450% Priority<br>RAM: 8GB<br>Storage: 70GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Medium Community</strong></p><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>12GB</h3><div class="price-tag">₹699/mo</div><p class="specs">CPU: AMD EPYC — 600% Priority<br>RAM: 12GB<br>Storage: 100GB SSD<br>Backups: 3 Slots<br><strong>Recommended: Heavy Plugin / Large SMP</strong></p><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>16GB</h3><div class="price-tag">₹999/mo</div><p class="specs">CPU: AMD EPYC — 800% Priority<br>RAM: 16GB<br>Storage: 140GB NVMe<br>Backups: 3 Slots<br><strong>Recommended: High Load / Large Communities</strong></p><a href="https://pay.legendvortexhost.dpdns.org/" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
             </div>
         </div>
     </div>
