@@ -1,36 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to SparkCloud</title>
-    <style>
-        body {
-            background-color: #1a1a2e;
-            color: #ffffff;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .box {
-            padding: 40px;
-            border: 2px solid #0f3460;
-            border-radius: 20px;
-            background: #16213e;
-        }
-        h1 { color: #4ecca3; }
-        p { font-size: 1.2rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spark Cloud Hosting</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+    /* ================= COMMON STYLES ================= */
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+    body{ background:#050816; color:white; overflow-x:hidden; }
+
+    /* ================= DASHBOARD ================= */
+    #dashboard {
+        height:100vh; display:flex; justify-content:center; align-items:center; text-align:center;
+        position: fixed; width: 100%; top: 0; left: 0; z-index: 100; background:#050816;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #dashboard::before{
+        content:''; position:absolute; width:600px; height:600px;
+        background:radial-gradient(circle,#7f00ff55,#00d4ff33,transparent);
+        filter:blur(120px); animation:float-bg 6s ease-in-out infinite alternate;
+    }
+    .container{ position:relative; z-index:2; max-width:800px; padding:20px; }
+    h1{ font-size:52px; font-weight:800; background:linear-gradient(135deg,#7f00ff,#00d4ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+    .stat-card {
+        margin: 40px auto 0;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 600px;
+        display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+    }
+    .stat-card h2 {
+        font-size: 32px; font-weight: 800;
+        background: linear-gradient(135deg, #7f00ff, #00d4ff);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .btn{
+        display:inline-block; margin-top:40px; padding:16px 45px; border-radius:50px;
+        background:linear-gradient(135deg,#7f00ff,#00d4ff); color:white;
+        font-weight:700; text-decoration:none; transition:0.3s; font-size:16px; cursor: pointer; border: none;
+    }
+    .btn:hover{ transform:translateY(-5px); box-shadow:0 0 20px #7f00ff,0 0 40px #00d4ff; }
+
+    /* ================= NAVIGATION ================= */
+    nav{ display:flex; justify-content:space-between; align-items:center; padding:20px 8%; background:rgba(255,255,255,0.03); backdrop-filter:blur(10px); }
+    .logo{ font-size:22px; font-weight:800; background:linear-gradient(135deg,#7f00ff,#00d4ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; cursor: pointer; }
+    nav ul{ list-style:none; display:flex; gap:25px; }
+    nav a{ text-decoration:none; color:#cbd5ff; font-weight:600; cursor: pointer; transition: 0.3s; }
+    nav a:hover{ color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
+
+    /* ================= PAGES ================= */
+    .page-view { display: none; opacity: 0; transition: opacity 0.5s ease; padding-bottom: 50px; }
+
+    /* TIER CARDS */
+    .tier-section { display: flex; justify-content: center; gap: 40px; padding: 40px 20px; flex-wrap: wrap; }
+    .tier-card {
+        padding: 60px 40px; width: 420px; min-height: 380px; border-radius: 25px; 
+        background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.08); 
+        text-align: center; transition: 0.4s; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .tier-card:hover { transform: translateY(-10px); }
+    .normal-card:hover { border-color: #00d4ff; }
+    .premium-card:hover { border-color: #ffd700; }
+
+    .explore-btn {
+        padding:14px 45px; border-radius:50px; font-weight:800; border:none; margin-top:30px; 
+        cursor:pointer; transition: 0.3s; font-size: 14px;
+    }
+    .btn-normal { background: linear-gradient(135deg,#7f00ff,#00d4ff); color: black !important; }
+    .btn-normal:hover { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); transform: scale(1.05); }
+
+    .btn-premium { background: linear-gradient(135deg,#ffd700,#ffae00); color: black !important; }
+    .btn-premium:hover { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); transform: scale(1.05); }
+
+    /* ================= STABLE GLITCH BUTTON ================= */
+    .order-btn-yellow {
+        display: block; width: 100%; padding: 12px; border-radius: 12px;
+        background: linear-gradient(135deg, #ffd700, #ffae00);
+        color: black; font-weight: 700; text-decoration: none; transition: 0.3s;
+        text-align: center; cursor: pointer;
+    }
+    .order-btn-yellow:hover {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        animation: stable-glitch 0.2s infinite;
+    }
+    @keyframes stable-glitch {
+        0% { text-shadow: 1px 0px 0px rgba(0,0,0,0.5); }
+        25% { text-shadow: -1px 0px 0px rgba(0,0,0,0.5); }
+        50% { text-shadow: 1px 0px 0px rgba(0,0,0,0.5); }
+        75% { text-shadow: -1px 0px 0px rgba(0,0,0,0.5); }
+        100% { text-shadow: 0px 0px 0px transparent; }
+    }
+
+    /* ================= PLANS GRID ================= */
+    .plans-container { padding: 40px 8%; text-align: center; }
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+    .plan-box {
+        background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+        padding: 30px; border-radius: 20px; transition: 0.3s;
+    }
+    .plan-box:hover { border-color: #7f00ff; transform: translateY(-5px); }
+    .price-tag { font-size: 28px; font-weight: 800; margin: 10px 0; color: #fff; }
+    .specs { color: #9aa4c7; line-height: 1.6; font-size: 14px; margin-bottom: 20px; }
+    
+    .order-btn {
+        display: block; width: 100%; padding: 12px; border-radius: 12px;
+        background: linear-gradient(135deg, #7f00ff, #00d4ff);
+        color: black; font-weight: 700; text-decoration: none; transition: 0.3s;
+    }
+    .order-btn:hover { box-shadow: 0 0 20px rgba(0, 212, 255, 0.6); transform: scale(1.02); }
+
+    .premium-box { border: 1px solid #ffd700 !important; background: rgba(255, 215, 0, 0.05); }
+
+    .back-btn { background: none; border: 1px solid #7f00ff; color: white; padding: 10px 25px; border-radius: 50px; cursor: pointer; margin-bottom: 20px; float: left; }
+
+    @keyframes float-bg{ from{transform:translateY(-40px);} to{transform:translateY(40px);} }
+</style>
 </head>
 <body>
-    <div class="box">
-        <h1>SparkCloud Hosting</h1>
-        <p>Aapki website successfully live ho gayi hai!</p>
-        <p>Abhi yahan par kaam chal raha hai...</p>
+
+    <div id="dashboard">
+        <div class="container">
+            <h1>SPARK CLOUD</h1>
+            <p style="color:#9aa4c7; margin-top:20px; font-size:18px;">Next-Gen Minecraft Server Hosting</p>
+            <button class="btn" onclick="showPage('main-page')">🚀 START EXPLORING</button>
+        </div>
     </div>
+
+    <div id="main-page" class="page-view">
+        <nav>
+            <div class="logo">SPARK CLOUD</div>
+            <ul>
+                <li><a onclick="showPage('dashboard')">Home</a></li>
+                <li><a href="https://panel.cbgroup.fun/" target="_blank">Panel</a></li>
+            </ul>
+        </nav>
+        <div style="text-align: center; padding: 60px 20px 0;">
+            <h1 style="font-size: 45px;">Choose Your Power</h1>
+            <div class="stat-card"><h2>🚀 Powering 1000+ Servers Worldwide</h2></div>
+        </div>
+        <div class="tier-section">
+            <div class="tier-card normal-card">
+                <h2 style="color:#00d4ff;">NORMAL TIER</h2>
+                <p style="color:#9aa4c7; margin-top:10px;">Budget-friendly, High speed, Reliable uptime</p>
+                <button class="explore-btn btn-normal" onclick="showPage('normal-plans')">VIEW PLANS</button>
+            </div>
+            <div class="tier-card premium-card">
+                <h2 style="color:#ffd700;">PREMIUM TIER</h2>
+                <p style="color:#9aa4c7; margin-top:10px;">Ultimate Performance for Pro Gamers</p>
+                <button class="explore-btn btn-premium" onclick="showPage('premium-plans')">VIEW PLANS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="normal-plans" class="page-view">
+        <nav><div class="logo">SPARK CLOUD</div></nav>
+        <div class="plans-container">
+            <button class="back-btn" onclick="showPage('main-page')">← Back</button>
+            <h1 style="clear:both;">Normal Tier Plans</h1>
+            <div class="plans-grid">
+                <div class="plan-box">
+                    <h3>4GB Plan</h3>
+                    <div class="price-tag">₹149/mo</div>
+                    <p class="specs">CPU: 150%<br>RAM: 4GB<br>Storage: 25GB SSD<br>Backups: 1 Slot<br>
+                    <strong>Recommended: Friends SMP (10-15 Players)</strong></p>
+                    <a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn">BUY NOW</a>
+                </div>
+                <div class="plan-box">
+                    <h3>6GB Plan</h3>
+                    <div class="price-tag">₹229/mo</div>
+                    <p class="specs">CPU: 250%<br>RAM: 6GB<br>Storage: 40GB SSD<br>Backups: 1 Slot<br>
+                    <strong>Recommended: Small Plugin Servers</strong></p>
+                    <a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn">BUY NOW</a>
+                </div>
+                <div class="plan-box">
+                    <h3>8GB Plan</h3>
+                    <div class="price-tag">₹329/mo</div>
+                    <p class="specs">CPU: 300%<br>RAM: 8GB<br>Storage: 60GB SSD<br>Backups: 1 Slot<br>
+                    <strong>Recommended: Medium SMP</strong></p>
+                    <a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn">BUY NOW</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="premium-plans" class="page-view">
+        <nav><div class="logo">SPARK CLOUD</div></nav>
+        <div class="plans-container">
+            <button class="back-btn" onclick="showPage('main-page')" style="border-color:#ffd700; color:#ffd700;">← Back</button>
+            <h1 style="clear:both; color:#ffd700;">Premium Tier Plans</h1>
+            <div class="plans-grid">
+                <div class="plan-box premium-box"><h3>6GB</h3><div class="price-tag">₹349/mo</div><p class="specs">CPU: AMD EPYC — 300% Priority<br>RAM: 6GB<br>Storage: 50GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Active SMP / Light Plugins</strong></p><a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>8GB</h3><div class="price-tag">₹499/mo</div><p class="specs">CPU: AMD EPYC — 450% Priority<br>RAM: 8GB<br>Storage: 70GB SSD<br>Backups: 2 Slots<br><strong>Recommended: Medium Community</strong></p><a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>12GB</h3><div class="price-tag">₹699/mo</div><p class="specs">CPU: AMD EPYC — 600% Priority<br>RAM: 12GB<br>Storage: 100GB SSD<br>Backups: 3 Slots<br><strong>Recommended: Heavy Plugin / Large SMP</strong></p><a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+                <div class="plan-box premium-box"><h3>16GB</h3><div class="price-tag">₹999/mo</div><p class="specs">CPU: AMD EPYC — 800% Priority<br>RAM: 16GB<br>Storage: 140GB NVMe<br>Backups: 3 Slots<br><strong>Recommended: High Load / Large Communities</strong></p><a href="https://discord.gg/4J3dbFcJpY" target="_blank" class="order-btn-yellow">BUY NOW</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const dashboard = document.getElementById('dashboard');
+            const allPages = document.querySelectorAll('.page-view');
+            
+            if (pageId === 'dashboard') {
+                allPages.forEach(p => p.style.opacity = '0');
+            } else {
+                dashboard.style.opacity = '0';
+                allPages.forEach(p => p.style.opacity = '0');
+            }
+
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                dashboard.style.display = 'none';
+                allPages.forEach(p => p.style.display = 'none');
+
+                if (pageId === 'dashboard') {
+                    dashboard.style.display = 'flex';
+                    setTimeout(() => dashboard.style.opacity = '1', 50);
+                } else {
+                    const active = document.getElementById(pageId);
+                    active.style.display = 'block';
+                    setTimeout(() => active.style.opacity = '1', 50);
+                }
+            }, 450);
+        }
+    </script>
 </body>
 </html>
